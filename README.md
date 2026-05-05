@@ -2,6 +2,14 @@
 
 A lightweight, team-oriented task management web application built with PHP, MySQL, and vanilla CSS. Features a dark glassmorphism UI with full mobile responsiveness.
 
+## Live Demo
+
+You can access the live, deployed version of Tasker here:
+**[https://planify-task.vercel.app](https://planify-task.vercel.app)**
+
+> **Note:** To test the application, simply click **"Create one for free"** on the login page to register a new account.
+
+
 ## Features
 
 - **Dashboard** — Overview of tasks assigned to you and tasks you reported, with status/priority stats and a live activity feed
