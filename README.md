@@ -70,8 +70,8 @@ task-manager/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/task-manager.git
-   cd task-manager
+   git clone https://github.com/imhuishan/planify-task.git
+   cd planify-task
    ```
 
 2. **Import the database**
