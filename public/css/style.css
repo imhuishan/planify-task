@@ -283,6 +283,8 @@ h1, h2, h3 {
     width: 600px;
     padding: 2.5rem;
     text-align: left;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .status-options {
@@ -297,6 +299,8 @@ h1, h2, h3 {
 .form-group label { display: block; margin-bottom: 0.6rem; color: var(--text-secondary); font-size: 0.9rem; }
 .form-control {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
     padding: 0.8rem 1.2rem;
     border-radius: 12px;
     background: rgba(15, 23, 42, 0.5);
@@ -304,6 +308,10 @@ h1, h2, h3 {
     color: white;
     outline: none;
     transition: var(--transition-smooth);
+}
+input[type="date"].form-control {
+    -webkit-appearance: none;
+    appearance: none;
 }
 select.form-control {
     appearance: none;
