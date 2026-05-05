@@ -19,8 +19,28 @@ if (is_dir($path)) {
     $path = rtrim($path, '/') . '/index.php';
 }
 
-if (file_exists($path) && str_ends_with($path, '.php')) {
-    require $path;
+if (file_exists($path)) {
+    // If it's a PHP file, execute it
+    if (str_ends_with($path, '.php')) {
+        require $path;
+    } else {
+        // If it's a static file, serve it with the right MIME type (mostly for local dev)
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $mimes = [
+            'css' => 'text/css',
+            'js' => 'application/javascript',
+            'png' => 'image/png',
+            'jpg' => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'gif' => 'image/gif',
+            'svg' => 'image/svg+xml',
+            'ico' => 'image/x-icon'
+        ];
+        if (isset($mimes[$ext])) {
+            header('Content-Type: ' . $mimes[$ext]);
+        }
+        readfile($path);
+    }
 } else {
     http_response_code(404);
     echo "404 Not Found - Path: " . htmlspecialchars($uri);
