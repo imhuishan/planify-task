@@ -6,6 +6,32 @@ $uri = ltrim($request_uri, '/');
 // Define base directory
 $base_dir = __DIR__ . '/..';
 
+// Initialize Database Session Handler for Serverless environments
+require_once $base_dir . '/config/db.php';
+
+session_set_save_handler(
+    function ($savePath, $sessionName) { return true; },
+    function () { return true; },
+    function ($id) use ($pdo) {
+        $stmt = $pdo->prepare("SELECT data FROM sessions WHERE id = ?");
+        $stmt->execute([$id]);
+        $row = $stmt->fetch();
+        return $row ? $row['data'] : '';
+    },
+    function ($id, $data) use ($pdo) {
+        $stmt = $pdo->prepare("REPLACE INTO sessions (id, data) VALUES (?, ?)");
+        return $stmt->execute([$id, $data]);
+    },
+    function ($id) use ($pdo) {
+        $stmt = $pdo->prepare("DELETE FROM sessions WHERE id = ?");
+        return $stmt->execute([$id]);
+    },
+    function ($maxlifetime) use ($pdo) {
+        $stmt = $pdo->prepare("DELETE FROM sessions WHERE last_accessed < DATE_SUB(NOW(), INTERVAL ? SECOND)");
+        return $stmt->execute([$maxlifetime]);
+    }
+);
+
 // Handle empty URI or index.php
 if ($uri === '' || $uri === 'index.php') {
     require $base_dir . '/public/index.php';
