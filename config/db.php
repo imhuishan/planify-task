@@ -1,9 +1,9 @@
 <?php
 // Database Configuration
-$server_name = getenv('DB_HOST') ?: "sql112.infinityfree.com";
-$username = getenv('DB_USER') ?: "if0_41843107";
-$password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "0zsJsDW1qJkPq";
-$dbname = getenv('DB_NAME') ?: "if0_41843107_planify_task";
+$server_name = getenv('DB_HOST') ?: "192.168.100.43";
+$username = getenv('DB_USER') ?: "root";
+$password = getenv('DB_PASS') !== false ? getenv('DB_PASS') : "huishan";
+$dbname = getenv('DB_NAME') ?: "task_manager";
 $port = getenv('DB_PORT') ?: "3306";
 
 try {

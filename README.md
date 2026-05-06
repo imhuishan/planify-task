@@ -5,7 +5,7 @@ A lightweight, team-oriented task management web application built with PHP, MyS
 ## Live Demo
 
 You can access the live, deployed version of Tasker here:
-**[https://planify-task.vercel.app](https://planify-task.vercel.app)**
+**[https://planify.infinityfreeapp.com/](https://planify.infinityfreeapp.com/)**
 
 > **Note:** To test the application, simply click **"Create one for free"** on the login page to register a new account.
 
@@ -34,6 +34,7 @@ You can access the live, deployed version of Tasker here:
 
 ```
 task-manager/
+├── index.php               # Entry point (Redirects to Login)
 ├── config/
 │   └── db.php              # Database connection & activity logger
 ├── public/
@@ -74,9 +75,10 @@ task-manager/
    cd planify-task
    ```
 
-2. **Import the database**
+2. **Create and import the database**
    ```bash
-   mysql -u root -p < database.sql
+   mysql -u root -p -e "CREATE DATABASE planify_task;"
+   mysql -u root -p planify_task < database.sql
    ```
 
 3. **Configure the database connection**
@@ -86,13 +88,13 @@ task-manager/
    $server_name = "localhost";
    $username    = "root";
    $password    = "your_password";
-   $dbname      = "task_manager";
+   $dbname      = "planify_task";
    $port        = "3306";
    ```
 
 4. **Run the development server**
    ```bash
-   php -S localhost:8000 -t public
+   php -S localhost:8000
    ```
 
 5. **Open in your browser**
